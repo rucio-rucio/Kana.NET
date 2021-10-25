@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>Kana.NET</Title>
+    <PackageId>Kana.NET</PackageId>
+    <Authors>rucio-rucio</Authors>
+    <Product>Kana.NET</Product>
+    <Description>using Umayadia.Kana.KanaConverter, you can convert japanese hiragana and katakana.</Description>
+    <Summary>using Umayadia.Kana.KanaConverter, you can convert japanese hiragana and katakana.</Summary>
+    <Copyright>rucio-rucio</Copyright>
+    <PackageProjectUrl>https://github.com/rucio-rucio/Kana.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/rucio-rucio/Kana.NET</RepositoryUrl>
+    <PackageReleaseNotes>https://github.com/rucio-rucio/Kana.NET</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+</Project>

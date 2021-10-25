@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7ff8af1a-2dc7-42dd-b88b-205fdfb53718": {
+      "ProjectGuid": "7ff8af1a-2dc7-42dd-b88b-205fdfb53718",
+      "DisplayName": "Umayadia.Kana",
+      "ColorIndex": 0
+    },
+    "f610fec1-ef0f-4f26-a289-62d1ff8cefae": {
+      "ProjectGuid": "f610fec1-ef0f-4f26-a289-62d1ff8cefae",
+      "DisplayName": "Umayadia.Kana.Test",
+      "ColorIndex": 1
+    },
+    "7f4c6f2a-9c5e-40e5-b701-59c8cf13c63b": {
+      "ProjectGuid": "7f4c6f2a-9c5e-40e5-b701-59c8cf13c63b",
+      "DisplayName": "ConsoleApp1",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}
