@@ -38,13 +38,13 @@ public class KanaConverter
             }
 
             //Invoke custom mapper is exists.
-            if (MapToHiragana is null)
+            if (MapToKatakana is null)
             {
                 result.Append(converted);
             }
             else
             {
-                MapToHiragana!(result, current.ToString(), converted, source);
+                MapToKatakana!(result, current.ToString(), converted, source);
             }
 
         } //foreach
@@ -77,13 +77,13 @@ public class KanaConverter
             }
 
             //Invoke custom mapper is exists.
-            if (MapToKatakana is null)
+            if (MapToHiragana is null)
             {
                 result.Append(converted);
             }
             else
             {
-                MapToKatakana(result, current.ToString(), converted, source);
+                MapToHiragana(result, current.ToString(), converted, source);
             }
 
         } //foreach

@@ -208,7 +208,19 @@ namespace Umayadia.Kana.Test
         } //ConvertToSingleHiraganaTest
 
         [TestMethod]
-        public void ConvertVariousSentences()
+        public void SpecialCharacters()
+        {
+            //結合文字
+            Assert.AreEqual(KanaConverter.ToHiragana("あ゙"), "あ゙","A100");
+            Assert.AreEqual(KanaConverter.ToKatakana("あ゙"), "ア゙", "A200");
+           
+
+        }
+
+
+
+        [TestMethod]
+        public void VariousSentences()
         {
             //using System.IO.StreamWriter writer = new(@"C:\temp\tests.txt");
 
