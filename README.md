@@ -2,9 +2,14 @@
 Japanese Kana utility for .NET. Convert Hiragana and Katakana.
 Kana.NET depends on only .NET. Kana.NET doesn't invoke windows funtion.
 So it works on Linux too.
+See also 
+https://www.umayadia.com/Note/Note063Kana.NET.htm 
 
 平仮名とカタカナを変換します。文字コードの計算処理だけで変換を実現しているためOSの機能に依存しません。
 そのため、非日本語環境のWindowsやLinux上でも動作します。
+詳細はこちらの記事をご覧ください。
+https://www.umayadia.com/Note/Note063Kana.NET.htm
+
 
 You can get "どらえもん大好き" from this code.
 C#
