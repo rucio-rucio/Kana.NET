@@ -137,3 +137,6 @@ source/Umayadia.Kana/ConsoleApp1/Properties/launchSettings.json
 source/Umayadia.Kana/.vs/Umayadia.Kana/DesignTimeBuild/.dtbcache.v2
 source/Umayadia.Kana/.vs/Umayadia.Kana/v17/.futdcache.v1
 source/Umayadia.Kana/.vs/Umayadia.Kana/v17/TestStore/0/000.testlog
+*.v2
+*.v1
+*.testlog

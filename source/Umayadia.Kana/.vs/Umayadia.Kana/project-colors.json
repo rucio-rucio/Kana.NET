@@ -15,7 +15,22 @@
       "ProjectGuid": "7f4c6f2a-9c5e-40e5-b701-59c8cf13c63b",
       "DisplayName": "ConsoleApp1",
       "ColorIndex": 2
+    },
+    "49727be5-5711-4826-a006-74acf18aa54a": {
+      "ProjectGuid": "49727be5-5711-4826-a006-74acf18aa54a",
+      "DisplayName": "ConsoleAppVB",
+      "ColorIndex": 3
+    },
+    "c21e795e-4e25-45dd-b345-5b78ff2ebf88": {
+      "ProjectGuid": "c21e795e-4e25-45dd-b345-5b78ff2ebf88",
+      "DisplayName": "Umayadia.Kana.VBTest",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "その他のファイル",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 5
 }

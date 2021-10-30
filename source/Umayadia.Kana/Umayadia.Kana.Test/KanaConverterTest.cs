@@ -302,5 +302,16 @@ namespace Umayadia.Kana.Test
             Assert.AreEqual(expected, actual);
             //writer.WriteLine(actual);
         }
+
+        [TestMethod]
+        public void NullConversion()
+        {
+            Assert.AreEqual("", KanaConverter.ToHiragana(null),"A1000");
+            Assert.AreEqual("", KanaConverter.ToKatakana(null),"A2000");
+
+            Assert.AreEqual("", KanaConverter.ToHiragana(""), "B1000");
+            Assert.AreEqual("", KanaConverter.ToKatakana(""), "B2000");
+
+        }
     }
 }
