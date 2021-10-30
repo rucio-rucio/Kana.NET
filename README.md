@@ -7,13 +7,25 @@ So it works on Linux too.
 そのため、非日本語環境のWindowsやLinux上でも動作します。
 
 You can get "どらえもん大好き" from this code.
+C#
 ```
 string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
 ```
 
+VB
+```
+Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
+```
+
 You can get "ドラエモン大好キ" from this code.
+C#
 ```
 string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
+```
+
+VB
+```
+Dim katakana As String = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き")
 ```
 
 # Custom mapper
@@ -24,7 +36,7 @@ MapToKatakanaプロパティを使用すると同様にカスタムなカタカ�
 これらは静的なプロパティなので１度定義すればその後のすべての変換に適用されます。
 カスタムな変換を無効にするには null を設定します。
 
-sample
+C# sample
 ```
 //Define custom map to Hiragana
 Umayadia.Kana.KanaConverter.MapToHiragana =
@@ -79,4 +91,40 @@ Kana.NET が提案する変換後の文字です。カスタムな変換が不�
 
 変換を行おうとしている文字列全体です。
 
+# StrConv compatibility
 
+Microsoft.VisualBasic.Strings.StrConv (and StrConv of VB6, VBA) is obsolete. But some programs needs alternative method.
+So Kana.NET have StrConv compatible method named, same as, StrConv.
+
+In following sample you will see that '𩸽' become '??'. This is the StrConv way.
+
+Microsoft.VisualBasic.Strings.StrConv (それにVB6やVBAのStrConv)は時代遅れですが、互換性が必要なプログラムもあるでしょう。
+Kana.NETではStrConvと互換性のある同じ名前の StrConv というメソッドを用意しています。
+
+下記のサンプルでは '𩸽' が ?? に変換されます。StrConvと同じ仕様です。
+
+VB Sample
+```
+'▼Sample6
+'StrConv
+Dim result6 As String = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", vbHiragana)
+Console.WriteLine(result6) 'どらえもんは??が大好き
+
+'▼Sample7
+'StrConv
+Dim result7 As String = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", vbKatakana)
+Console.WriteLine(result7) 'ドラエモンハ??ガ大好キ
+```
+
+C# Sample
+```
+//▼Sample6
+//StrConv
+string result6 = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", Umayadia.Kana.umaStrConv.Hiragana);
+Console.WriteLine(result6); //どらえもんは??が大好き
+
+//▼Sample7
+//StrConv
+string result7 = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", Umayadia.Kana.umaStrConv.Katakana);
+Console.WriteLine(result7); //ドラエモンハ??ガ大好キ
+```
