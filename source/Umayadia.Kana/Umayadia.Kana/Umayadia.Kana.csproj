@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <FileVersion>1.0.1</FileVersion>
+    <TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <FileVersion>1.0.3</FileVersion>
     <Nullable>enable</Nullable>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>Kana.NET</Title>
@@ -17,7 +17,7 @@
     <RepositoryUrl>https://github.com/rucio-rucio/Kana.NET</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/rucio-rucio/Kana.NET</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
 </Project>
