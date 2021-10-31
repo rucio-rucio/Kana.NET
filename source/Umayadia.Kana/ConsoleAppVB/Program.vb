@@ -9,11 +9,11 @@ Module Program
         Trace.Listeners.Add(New TextWriterTraceListener(Console.Out))
         Debug.AutoFlush = True
 
-        Dim p As New Performance
-        p.Test()
+        'Dim p As New Performance
+        'p.Test()
 
-        'Dim s As New Sample
-        's.DoSample()
+        Dim s As New Sample
+        s.DoSample()
 
 
         'Dim generator As New StrConvGenerator

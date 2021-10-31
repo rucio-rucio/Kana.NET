@@ -82,6 +82,11 @@ namespace ConsoleApp1
             //StrConv
             string result7 = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", Umayadia.Kana.umaStrConv.Katakana);
             Console.WriteLine(result7); //ドラエモンハ??ガ大好キ
+
+            //▼Sample8
+            var sjis = Umayadia.Kana.KanaUtil.ShiftJIS;
+            var bytes = sjis.GetBytes("楽しい.NET");
+            Console.WriteLine($"楽しい.NET is {bytes.Length} bytes."); //10
         }
     }
 }

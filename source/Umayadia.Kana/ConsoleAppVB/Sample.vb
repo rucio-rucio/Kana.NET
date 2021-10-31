@@ -82,6 +82,13 @@ Public Class Sample
         Dim result7 As String = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", vbKatakana)
         Console.WriteLine(result7) 'ドラエモンハ??ガ大好キ
 
+        '▼Sample8
+        Dim sjis = Umayadia.Kana.KanaUtil.ShiftJIS
+        Dim bytes = sjis.GetBytes("楽しい.NET")
+        Console.WriteLine($"楽しい.NET is {bytes.Length} bytes.") '10
+
+
+
     End Sub
 
 End Class
