@@ -9,6 +9,9 @@ namespace Umayadia.Kana.Test
         [TestMethod]
         public void ConvertToSingleKatakanaTest()
         {
+            KanaConverter.MapToHiragana = null;
+            KanaConverter.MapToKatakana = null;
+
             Assert.AreEqual(KanaConverter.ToKatakana("ぁ"), "ァ");
             Assert.AreEqual(KanaConverter.ToKatakana("あ"), "ア");
             Assert.AreEqual(KanaConverter.ToKatakana("ぃ"), "ィ");
@@ -109,6 +112,9 @@ namespace Umayadia.Kana.Test
         [TestMethod]
         public void ConvertToSingleHiraganaTest()
         {
+            KanaConverter.MapToHiragana = null;
+            KanaConverter.MapToKatakana = null;
+
             Assert.AreEqual(KanaConverter.ToHiragana("゠"), "゠");
             Assert.AreEqual(KanaConverter.ToHiragana("ァ"), "ぁ");
             Assert.AreEqual(KanaConverter.ToHiragana("ア"), "あ");
@@ -210,6 +216,9 @@ namespace Umayadia.Kana.Test
         [TestMethod]
         public void SpecialCharacters()
         {
+            KanaConverter.MapToHiragana = null;
+            KanaConverter.MapToKatakana = null;
+
             //結合文字
             Assert.AreEqual(KanaConverter.ToHiragana("あ゙"), "あ゙","A100");
             Assert.AreEqual(KanaConverter.ToKatakana("あ゙"), "ア゙", "A200");
@@ -222,6 +231,9 @@ namespace Umayadia.Kana.Test
         [TestMethod]
         public void VariousSentences()
         {
+            KanaConverter.MapToHiragana = null;
+            KanaConverter.MapToKatakana = null;
+
             //using System.IO.StreamWriter writer = new(@"C:\temp\tests.txt");
 
 
@@ -306,6 +318,9 @@ namespace Umayadia.Kana.Test
         [TestMethod]
         public void NullConversion()
         {
+            KanaConverter.MapToHiragana = null;
+            KanaConverter.MapToKatakana = null;
+
             Assert.AreEqual("", KanaConverter.ToHiragana(null),"A1000");
             Assert.AreEqual("", KanaConverter.ToKatakana(null),"A2000");
 

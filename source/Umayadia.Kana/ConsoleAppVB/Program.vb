@@ -6,8 +6,14 @@ Module Program
     Sub Main(args As String())
         Console.WriteLine($"Visual Basic on {Environment.OSVersion}")
 
-        Dim s As New Sample
-        s.DoSample()
+        Trace.Listeners.Add(New TextWriterTraceListener(Console.Out))
+        Debug.AutoFlush = True
+
+        Dim p As New Performance
+        p.Test()
+
+        'Dim s As New Sample
+        's.DoSample()
 
 
         'Dim generator As New StrConvGenerator

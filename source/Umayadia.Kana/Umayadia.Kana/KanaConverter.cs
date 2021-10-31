@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Umayadia.Kana
 {
@@ -43,7 +44,12 @@ namespace Umayadia.Kana
         /// <returns>変換結果</returns>
         public static string ToKatakana(string? source)
         {
-            const int diff = 96; //Distance bitweeb CodePoint of Hiragana and CodePoint of Katakana.
+            const int diff = 96; //Distance between CodePoint of Hiragana and CodePoint of Katakana.
+
+            const char u3041 = 'ぁ';
+            const char u3096 = 'ゖ';
+            const char u309D = 'ゝ';
+            const char u309E = 'ゞ';
 
             if (source == null)
             {
@@ -51,36 +57,39 @@ namespace Umayadia.Kana
             }
 
             var result = new System.Text.StringBuilder(source.Length);
-
-            foreach (char current in source)
+            
+            //For performance reason, I wrote same if. Imagine that this in one kind of inline expansion.
+            if (MapToKatakana == null)
             {
-                string converted;
-
-                byte[] bytes = System.Text.Encoding.UTF32.GetBytes(current.ToString());
-                int codePoint = BitConverter.ToInt32(bytes);
-
-                //Map to katakana if exists.
-                if ((codePoint >= 0x3041 && codePoint <= 0x3096) || codePoint == 0x309D || codePoint == 0x309E)
+                foreach (char current in source)
                 {
-                    codePoint = codePoint + diff;
-                    converted = Char.ConvertFromUtf32(codePoint);
-                }
-                else
+                    if ((current >= u3041 && current <= u3096) || current == u309D || current == u309E)
+                    {
+                        char converted = (char)(current + diff);
+                        result.Append(converted);
+                    }
+                    else
+                    {
+                        result.Append(current);
+                    }
+                } //foreach
+            }
+            else
+            {
+                foreach (char current in source)
                 {
-                    converted = current.ToString();
-                }
+                    if ((current >= u3041 && current <= u3096) || current == u309D || current == u309E)
+                    {
+                        char converted = (char)(current + diff);
+                        MapToKatakana!(result, current.ToString(), converted.ToString(), source);
+                    }
+                    else
+                    {
+                        MapToKatakana!(result, current.ToString(), current.ToString(), source);
+                    }
+                } //foreach
 
-                //Invoke custom mapper is exists.
-                if (MapToKatakana is null)
-                {
-                    result.Append(converted);
-                }
-                else
-                {
-                    MapToKatakana!(result, current.ToString(), converted, source);
-                }
-
-            } //foreach
+            } //if (MapToKatakana == null)
 
             return result.ToString();
         } // ToKatakana
@@ -100,7 +109,12 @@ namespace Umayadia.Kana
         /// <returns>変換結果</returns>
         public static string ToHiragana(string? source)
         {
-            const int diff = 96; //Distance bitweeb CodePoint of Hiragana and CodePoint of Katakana.
+            const int diff = 96; //Distance between CodePoint of Hiragana and CodePoint of Katakana.
+
+            const char u30A1 = 'ァ';
+            const char u30F6 = 'ヶ';
+            const char u30FD = 'ヽ';
+            const char u30FE = 'ヾ';
 
             if (source == null)
             {
@@ -109,41 +123,43 @@ namespace Umayadia.Kana
 
             var result = new System.Text.StringBuilder(source.Length);
 
-            foreach (char current in source)
+            //For performance reason, I wrote same if. Imagine that this in one kind of inline expansion.
+            if (MapToHiragana == null)
             {
-                string converted;
-
-                byte[] bytes = System.Text.Encoding.UTF32.GetBytes(current.ToString());
-                int codePoint = BitConverter.ToInt32(bytes);
-
-                //Map to hiragana if exists.
-                if ((codePoint >= 0x30A1 && codePoint <= 0x30F6) || codePoint == 0x30FD || codePoint == 0x30FE)
+                foreach (char current in source)
                 {
-                    codePoint = codePoint - diff;
-                    converted = Char.ConvertFromUtf32(codePoint);
-                }
-                else
+                    if ((current >= u30A1 && current <= u30F6) || current == u30FD || current == u30FE)
+                    {
+                        char converted = (char)(current - diff);
+                        result.Append(converted);
+                    }
+                    else
+                    {
+                        result.Append(current);
+                    }
+                } //foreach
+            }
+            else
+            {
+                foreach (char current in source)
                 {
-                    converted = current.ToString();
-                }
+                    if ((current >= u30A1 && current <= u30F6) || current == u30FD || current == u30FE)
+                    {
+                        char converted = (char)(current - diff);
+                        MapToHiragana(result, current.ToString(), converted.ToString(), source);
+                    }
+                    else
+                    {
+                        MapToHiragana(result, current.ToString(), current.ToString(), source);
+                    }
+                } //foreach
 
-                //Invoke custom mapper is exists.
-                if (MapToHiragana is null)
-                {
-                    result.Append(converted);
-                }
-                else
-                {
-                    MapToHiragana(result, current.ToString(), converted, source);
-                }
-
-            } //foreach
+            } //if (MapToHiragana == null)
 
             return result.ToString();
         } // ToHiragana
 
-
-
+        
         private static StrConvConverter? strConvConverter;
 
         //Public Function StrConv (str As String, Conversion As VbStrConv, Optional LocaleID As Integer = 0) As String
