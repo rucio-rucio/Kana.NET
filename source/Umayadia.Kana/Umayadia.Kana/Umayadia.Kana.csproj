@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net5.0;netcoreapp3.1</TargetFrameworks>
     <ImplicitUsings>disable</ImplicitUsings>
-    <FileVersion>1.0.3</FileVersion>
+    <FileVersion>1.0.4</FileVersion>
     <Nullable>enable</Nullable>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Title>Kana.NET</Title>
@@ -17,7 +17,7 @@
     <RepositoryUrl>https://github.com/rucio-rucio/Kana.NET</RepositoryUrl>
     <PackageReleaseNotes>https://github.com/rucio-rucio/Kana.NET</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
 </Project>

@@ -14,13 +14,35 @@ namespace Umayadia.Kana
     /// </summary>
     public class KanaConverter
     {
+        private static DefaultKanaConverter? converterValue = null;
+        public static DefaultKanaConverter Converter
+        {
+            get
+            {
+                if (converterValue == null)
+                {
+                    converterValue = new DefaultKanaConverter();
+                }
+                return converterValue;
+            }
+            set
+            {
+                converterValue = value;
+            }
+        }
+
+
         /// <summary>
         /// <see cref="ToHiragana(string)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
         /// <para>
         /// To use this, you can define custome conversion when ToHiragana calling.
         /// </para>
         /// </summary>
-        public static Action<System.Text.StringBuilder, string, string, string>? MapToHiragana { get; set; }
+        public static Action<System.Text.StringBuilder, string, string, string>? MapToHiragana
+        {
+            get => Converter.MapToHiragana;
+            set => Converter.MapToHiragana = value;
+        }
 
         /// <summary>
         /// <see cref="ToKatakana(string)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
@@ -28,7 +50,11 @@ namespace Umayadia.Kana
         /// To use this, you can define custome conversion when ToKatakana calling.
         /// </para>
         /// </summary>
-        public static Action<System.Text.StringBuilder, string, string, string>? MapToKatakana { get; set; }
+        public static Action<System.Text.StringBuilder, string, string, string>? MapToKatakana
+        {
+            get => Converter.MapToKatakana;
+            set => Converter.MapToKatakana = value;
+        }
 
         /// <summary>
         /// 文字列内のひらがなをカタカナに変換します。
@@ -44,54 +70,7 @@ namespace Umayadia.Kana
         /// <returns>変換結果</returns>
         public static string ToKatakana(string? source)
         {
-            const int diff = 96; //Distance between CodePoint of Hiragana and CodePoint of Katakana.
-
-            const char u3041 = 'ぁ';
-            const char u3096 = 'ゖ';
-            const char u309D = 'ゝ';
-            const char u309E = 'ゞ';
-
-            if (source == null)
-            {
-                return "";
-            }
-
-            var result = new System.Text.StringBuilder(source.Length);
-            
-            //For performance reason, I wrote same if. Imagine that this in one kind of inline expansion.
-            if (MapToKatakana == null)
-            {
-                foreach (char current in source)
-                {
-                    if ((current >= u3041 && current <= u3096) || current == u309D || current == u309E)
-                    {
-                        char converted = (char)(current + diff);
-                        result.Append(converted);
-                    }
-                    else
-                    {
-                        result.Append(current);
-                    }
-                } //foreach
-            }
-            else
-            {
-                foreach (char current in source)
-                {
-                    if ((current >= u3041 && current <= u3096) || current == u309D || current == u309E)
-                    {
-                        char converted = (char)(current + diff);
-                        MapToKatakana!(result, current.ToString(), converted.ToString(), source);
-                    }
-                    else
-                    {
-                        MapToKatakana!(result, current.ToString(), current.ToString(), source);
-                    }
-                } //foreach
-
-            } //if (MapToKatakana == null)
-
-            return result.ToString();
+            return Converter.ToKatakana(source);
         } // ToKatakana
 
         /// <summary>
@@ -109,58 +88,26 @@ namespace Umayadia.Kana
         /// <returns>変換結果</returns>
         public static string ToHiragana(string? source)
         {
-            const int diff = 96; //Distance between CodePoint of Hiragana and CodePoint of Katakana.
-
-            const char u30A1 = 'ァ';
-            const char u30F6 = 'ヶ';
-            const char u30FD = 'ヽ';
-            const char u30FE = 'ヾ';
-
-            if (source == null)
-            {
-                return "";
-            }
-
-            var result = new System.Text.StringBuilder(source.Length);
-
-            //For performance reason, I wrote same if. Imagine that this in one kind of inline expansion.
-            if (MapToHiragana == null)
-            {
-                foreach (char current in source)
-                {
-                    if ((current >= u30A1 && current <= u30F6) || current == u30FD || current == u30FE)
-                    {
-                        char converted = (char)(current - diff);
-                        result.Append(converted);
-                    }
-                    else
-                    {
-                        result.Append(current);
-                    }
-                } //foreach
-            }
-            else
-            {
-                foreach (char current in source)
-                {
-                    if ((current >= u30A1 && current <= u30F6) || current == u30FD || current == u30FE)
-                    {
-                        char converted = (char)(current - diff);
-                        MapToHiragana(result, current.ToString(), converted.ToString(), source);
-                    }
-                    else
-                    {
-                        MapToHiragana(result, current.ToString(), current.ToString(), source);
-                    }
-                } //foreach
-
-            } //if (MapToHiragana == null)
-
-            return result.ToString();
+            return Converter.ToHiragana(source);
         } // ToHiragana
 
-        
-        private static StrConvConverter? strConvConverter;
+
+        private static StrConvConverter? strConvConverterValue = null;
+        private static StrConvConverter strConvConverter
+        {
+            get
+            {
+                if (strConvConverterValue == null)
+                {
+                    strConvConverterValue = new StrConvConverter();
+                }
+                return strConvConverterValue;
+            }
+            set
+            {
+                strConvConverterValue = value;
+            }
+        }
 
         //Public Function StrConv (str As String, Conversion As VbStrConv, Optional LocaleID As Integer = 0) As String
 
