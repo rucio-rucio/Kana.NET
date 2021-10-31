@@ -2,16 +2,21 @@
 Japanese Kana utility for .NET. Convert Hiragana and Katakana.
 Kana.NET depends on only .NET. Kana.NET doesn't invoke windows funtion.
 So it works on Linux too.
+
 See also 
+
 https://www.umayadia.com/Note/Note063Kana.NET.htm 
 
 平仮名とカタカナを変換します。文字コードの計算処理だけで変換を実現しているためOSの機能に依存しません。
 そのため、非日本語環境のWindowsやLinux上でも動作します。
+
 詳細はこちらの記事をご覧ください。
+
 https://www.umayadia.com/Note/Note063Kana.NET.htm
 
 
 You can get "どらえもん大好き" from this code.
+
 C#
 ```
 string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
@@ -23,6 +28,7 @@ Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん
 ```
 
 You can get "ドラエモン大好キ" from this code.
+
 C#
 ```
 string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
@@ -133,3 +139,23 @@ Console.WriteLine(result6); //どらえもんは??が大好き
 string result7 = Umayadia.Kana.KanaConverter.StrConv("ドラえもんは𩸽が大好き", Umayadia.Kana.umaStrConv.Katakana);
 Console.WriteLine(result7); //ドラエモンハ??ガ大好キ
 ```
+
+# Extra
+
+Umayadia.Kana.KanaUtil.ShiftJIS returns Shift_JIS encoding object. This is a little shortcut to get the encoding object.
+So you can write program as follow.
+
+C#
+```
+var sjis = Umayadia.Kana.KanaUtil.ShiftJIS;
+var bytes = sjis.GetBytes("楽しい.NET");
+Console.WriteLine($"楽しい.NET is {bytes.Length} bytes."); //10
+```
+
+VB
+```
+Dim sjis = Umayadia.Kana.KanaUtil.ShiftJIS
+Dim bytes = sjis.GetBytes("楽しい.NET")
+Console.WriteLine($"楽しい.NET is {bytes.Length} bytes.") '10
+```
+
