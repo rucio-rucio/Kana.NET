@@ -43,7 +43,7 @@ Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}")
 
 半角ハングルや、ダイアクリティカルマーク付きのラテン文字(À, Á, Â, Ã, Ä, Å など)など、日本語でまず使用されない文字の全角・半角変換は行いません。
 
-変換する全文字の一覧は、テストの KanaConverterWideNarrowTest.cs を見るとわかります。
+変換する全文字の一覧は、[全角半角のテスト](https://github.com/rucio-rucio/Kana.NET/blob/main/source/Umayadia.Kana/Umayadia.Kana.Test/KanaConverterWideNarrowTest.cs) を見るとわかります。
 
 # Custom mapper
 
