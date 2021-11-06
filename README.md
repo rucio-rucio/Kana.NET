@@ -15,28 +15,24 @@ https://www.umayadia.com/Note/Note063Kana.NET.htm
 https://www.umayadia.com/Note/Note063Kana.NET.htm
 
 
-You can get "どらえもん大好き" from this code.
-
 C#
 ```
 string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
+string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
+string zenkaku = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ");
+string hankaku = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ");
+
+Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}");
 ```
 
 VB
 ```
 Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
-```
-
-You can get "ドラエモン大好キ" from this code.
-
-C#
-```
-string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
-```
-
-VB
-```
 Dim katakana As String = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き")
+Dim zenkaku As String = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ")
+Dim hankaku As String = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ")
+
+Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}")
 ```
 
 # Custom mapper
