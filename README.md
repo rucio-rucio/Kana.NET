@@ -7,7 +7,7 @@ See also
 
 https://www.umayadia.com/Note/Note063Kana.NET.htm 
 
-平仮名とカタカナを変換します。文字コードの計算処理だけで変換を実現しているためOSの機能に依存しません。
+ひらがな と カタカナ の変換、全角と半角の変換を行います。文字コードの計算処理だけで変換を実現しているためOSの機能に依存しません。
 そのため、非日本語環境のWindowsやLinux上でも動作します。
 
 詳細はこちらの記事をご覧ください。
@@ -15,29 +15,35 @@ https://www.umayadia.com/Note/Note063Kana.NET.htm
 https://www.umayadia.com/Note/Note063Kana.NET.htm
 
 
-You can get "どらえもん大好き" from this code.
-
 C#
 ```
 string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
+string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
+string zenkaku = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ");
+string hankaku = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ");
+
+Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}");
 ```
 
 VB
 ```
 Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
-```
-
-You can get "ドラエモン大好キ" from this code.
-
-C#
-```
-string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
-```
-
-VB
-```
 Dim katakana As String = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き")
+Dim zenkaku As String = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ")
+Dim hankaku As String = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ")
+
+Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}")
 ```
+
+# Full width and Half width (全角と半角)
+
+全角と半角の変換はどの文字とどの文字を対応させるのかの選択が難しく、Kana.NET では日本語で便利に使用できるように調整しました。
+たとえば、半角のバックスラッシュ(U+005C)は全角の円マークに対応して、相互に全角・半角変換します。
+本来、半角の円マークは U+00A5 で定義されており、U+005C とは別物なのですが、日本語の全角変換においてはこの変換の方が便利と判断したからです。
+
+半角ハングルや、ダイアクリティカルマーク付きのラテン文字(À, Á, Â, Ã, Ä, Å など)など、日本語でまず使用されない文字の全角・半角変換は行いません。
+
+変換する全文字の一覧は、テストの KanaConverterWideNarrowTest.cs を見るとわかります。
 
 # Custom mapper
 
