@@ -33,7 +33,7 @@ namespace Umayadia.Kana
 
 
         /// <summary>
-        /// <see cref="ToHiragana(string)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
+        /// <see cref="ToHiragana(string?)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
         /// <para>
         /// To use this, you can define custome conversion when ToHiragana calling.
         /// </para>
@@ -45,7 +45,7 @@ namespace Umayadia.Kana
         }
 
         /// <summary>
-        /// <see cref="ToKatakana(string)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
+        /// <see cref="ToKatakana(string?)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
         /// <para>
         /// To use this, you can define custome conversion when ToKatakana calling.
         /// </para>
@@ -54,6 +54,46 @@ namespace Umayadia.Kana
         {
             get => Converter.MapToKatakana;
             set => Converter.MapToKatakana = value;
+        }
+
+        /// <summary>
+        /// <see cref="ToWide(string?)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
+        /// <para>
+        /// To use this, you can define custome conversion when ToWide calling.
+        /// </para>
+        /// </summary>
+        [Obsolete("Experimental(Not obsolete but for compiler warning). Diacritical mark specification may change.")]
+        public static Action<System.Text.StringBuilder, string, string, string>? MapToWide
+        {
+            get => Converter.MapToWide;
+            set => Converter.MapToWide = value;
+        }
+
+        /// <summary>
+        /// <see cref="ToNarrow(string?)"/>メソッド実行時にカスタムな変換を行う場合に使用します。
+        /// <para>
+        /// To use this, you can define custome conversion when ToNarrow calling.
+        /// </para>
+        /// </summary>
+        public static Action<System.Text.StringBuilder, string, string, string>? MapToNarrow
+        {
+            get => Converter.MapToNarrow;
+            set => Converter.MapToNarrow = value;
+        }
+
+        /// <summary>
+        /// KanaConverterの状態を初期状態に戻します。
+        /// カスタム変換(MapToXxxx)をすべて未設定状態(null)にします。Conveter および StrConverter はデフォルトに戻ります。
+        /// </summary>
+        public static void ResetToInitialSettings()
+        {
+            MapToHiragana = null;
+            MapToKatakana = null;
+            MapToWide = null;
+            MapToNarrow = null;
+
+            converterValue = null;
+            strConvConverterValue = null;
         }
 
         /// <summary>
@@ -90,6 +130,16 @@ namespace Umayadia.Kana
         {
             return Converter.ToHiragana(source);
         } // ToHiragana
+
+        public static string ToWide(string? source)
+        {
+            return Converter.ToWide(source);
+        }
+
+        public static string ToNarrow(string? source)
+        {
+            return Converter.ToNarrow(source);
+        }
 
 
         private static StrConvConverter? strConvConverterValue = null;

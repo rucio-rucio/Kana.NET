@@ -100,8 +100,8 @@ namespace Umayadia.Kana.Test
             Assert.AreEqual(KanaConverter.ToKatakana("ゖ"), "ヶ");
             //Assert.AreEqual(KanaConverter.ToKatakana("゗"), "ヷ");
             //Assert.AreEqual(KanaConverter.ToKatakana("゘"), "ヸ");
-            Assert.AreEqual(KanaConverter.ToKatakana("   ゙"), "   ゙");
-            Assert.AreEqual(KanaConverter.ToKatakana("   ゚"), "   ゚");
+            Assert.AreEqual(KanaConverter.ToKatakana("\u3099"), "\u3099"); //  ゙,U+3099 Combinable Dakuten
+            Assert.AreEqual(KanaConverter.ToKatakana("\u309A"), "\u309A"); //  ゚, U+309A Combinable Han-Dakuten
             Assert.AreEqual(KanaConverter.ToKatakana("゛"), "゛"); // Not match
             Assert.AreEqual(KanaConverter.ToKatakana("゜"), "゜"); // Not match
             Assert.AreEqual(KanaConverter.ToKatakana("ゝ"), "ヽ");

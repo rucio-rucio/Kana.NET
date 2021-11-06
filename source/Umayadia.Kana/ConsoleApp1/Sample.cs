@@ -10,17 +10,26 @@ namespace ConsoleApp1
     {
         public void DoSample()
         {
-            //▼Sample1 Katakana to Hiragana
-            //次のように１行記述するだけ カタカナ を ひらがな に変換できます。
-            //You can convert Katakana to Hiragana, writing just only one following line.
             string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
-            Console.WriteLine(hiragana);
-
-            //▼Sample2 Hiragana to Katakana
-            //次のように１行記述するだけ ひらがな を カタカナ に変換できます。
-            //You can convert Hiragana to Katakana, writing just only one following line.
             string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
-            Console.WriteLine(katakana);
+            string zenkaku = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ");
+            string hankaku = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ");
+
+            Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}");
+
+
+
+            ////▼Sample1 Katakana to Hiragana
+            ////次のように１行記述するだけ カタカナ を ひらがな に変換できます。
+            ////You can convert Katakana to Hiragana, writing just only one following line.
+            //string hiragana = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き");
+            //Console.WriteLine(hiragana);
+
+            ////▼Sample2 Hiragana to Katakana
+            ////次のように１行記述するだけ ひらがな を カタカナ に変換できます。
+            ////You can convert Hiragana to Katakana, writing just only one following line.
+            //string katakana = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き");
+            //Console.WriteLine(katakana);
 
             //▼Sample3 Custome mapping to Hiragana
             //文字ごとに独自の変換を定義することもできます。

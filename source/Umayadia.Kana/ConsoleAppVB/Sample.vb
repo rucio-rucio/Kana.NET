@@ -3,17 +3,25 @@
 Public Class Sample
 
     Public Sub DoSample()
-        '▼Sample1 Katakana to Hiragana
-        '次のように１行記述するだけ カタカナ を ひらがな に変換できます。
-        'You can convert Katakana to Hiragana, writing just only one following line.
-        Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
-        Console.WriteLine(hiragana) 'どらえもん大好き
 
-        '▼Sample2 Hiragana to Katakana
-        '次のように１行記述するだけ ひらがな を カタカナ に変換できます。
-        'You can convert Hiragana to Katakana, writing just only one following line.
+        Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
         Dim katakana As String = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き")
-        Console.WriteLine(katakana) 'ドラエモン大好キ
+        Dim zenkaku As String = Umayadia.Kana.KanaConverter.ToWide("ｱｲｳｴｵ")
+        Dim hankaku As String = Umayadia.Kana.KanaConverter.ToNarrow("アイウエオ")
+
+        Console.WriteLine($"{hiragana} {katakana} {zenkaku} {hankaku}")
+
+        ''▼Sample1 Katakana to Hiragana
+        ''次のように１行記述するだけ カタカナ を ひらがな に変換できます。
+        ''You can convert Katakana to Hiragana, writing just only one following line.
+        'Dim hiragana As String = Umayadia.Kana.KanaConverter.ToHiragana("ドラえもん大好き")
+        'Console.WriteLine(hiragana) 'どらえもん大好き
+
+        ''▼Sample2 Hiragana to Katakana
+        ''次のように１行記述するだけ ひらがな を カタカナ に変換できます。
+        ''You can convert Hiragana to Katakana, writing just only one following line.
+        'Dim katakana As String = Umayadia.Kana.KanaConverter.ToKatakana("ドラえもん大好き")
+        'Console.WriteLine(katakana) 'ドラエモン大好キ
 
         '▼Sample3 Custome mapping to Hiragana
         '文字ごとに独自の変換を定義することもできます。

@@ -4,8 +4,97 @@ Imports Umayadia.Kana
 
 Public Class StrConvGenerator
 
+    <CodeAnalysis.SuppressMessage("Interoperability", "CA1416")>
+    Public Function StrConvWideList() As String
+#If NETCOREAPP Then
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
+#End If
+
+        Dim diffString As New List(Of String)
+
+        For codePoint As Integer = 0 To &HFFFF
+
+            Dim c As String
+
+            If codePoint >= &HD800 AndAlso codePoint <= &HDFFF Then
+
+                'サロゲート領域を飛ばす。
+                Continue For
+
+            ElseIf codePoint <= &HFFFF Then
+                'サロゲート領域(&HD800 ～ &HDFFF)を単独で Char型にするために ChrW を使います。
+                c = ChrW(codePoint).ToString
+            Else
+                'この領域は ChrWはエラーになるので、 ConvertFromUtf32 を使用します。
+                c = Char.ConvertFromUtf32(codePoint).ToString
+            End If
+
+            Dim strConvResult = StrConv(c, VbStrConv.Wide)
+            If strConvResult = "？" Then
+
+                Continue For
+            End If
+
+            If strConvResult <> c Then
+                Dim bytes = System.Text.Encoding.UTF32.GetBytes(strConvResult)
+                Dim resultCP = BitConverter.ToInt32(bytes)
+                diffString.Add($"'Original 0x{codePoint:X} {c} Widen 0x{resultCP:X} {strConvResult}")
+            End If
+        Next
+
+        Dim result As String = String.Join(vbCrLf, diffString)
+
+
+        Return result
+
+    End Function
+
+    <CodeAnalysis.SuppressMessage("Interoperability", "CA1416")>
+    Public Function StrConvNarrowList() As String
+#If NETCOREAPP Then
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
+#End If
+
+        Dim diffString As New List(Of String)
+
+        For codePoint As Integer = 0 To &HFFFF
+
+            Dim c As String
+
+            If codePoint >= &HD800 AndAlso codePoint <= &HDFFF Then
+
+                'サロゲート領域を飛ばす。
+                Continue For
+
+            ElseIf codePoint <= &HFFFF Then
+                'サロゲート領域(&HD800 ～ &HDFFF)を単独で Char型にするために ChrW を使います。
+                c = ChrW(codePoint).ToString
+            Else
+                'この領域は ChrWはエラーになるので、 ConvertFromUtf32 を使用します。
+                c = Char.ConvertFromUtf32(codePoint).ToString
+            End If
+
+            Dim strConvResult = StrConv(c, VbStrConv.Narrow)
+            If strConvResult = "?" Then
+                Continue For
+            End If
+
+            If strConvResult <> c Then
+                Dim bytes = System.Text.Encoding.UTF32.GetBytes(strConvResult)
+                Dim resultCP = BitConverter.ToInt32(bytes)
+                diffString.Add($"""{c}"" => ""{strConvResult}"", // U+{codePoint:X4} to U+{resultCP:X4}")
+            End If
+        Next
+
+        Dim result As String = String.Join(vbCrLf, diffString)
+
+
+        Return result
+
+    End Function
+
     ''' <summary>
-    ''' generate character sequence from StrConv(&H0000, VbStrConv.Katakana) to StrConv(&HFFFF, VbStrConv.Katakana)
+    ''' generate character sequence from StrConv(&&H0000, VbStrConv.Katakana) to StrConv(&&HFFFF, VbStrConv.Katakana)
     ''' As C# string literal.
     ''' </summary>
     ''' <returns></returns>

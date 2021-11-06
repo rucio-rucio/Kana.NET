@@ -4,10 +4,9 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Console.WriteLine($"Visual Basic on {Environment.OSVersion}")
-
-        Trace.Listeners.Add(New TextWriterTraceListener(Console.Out))
-        Debug.AutoFlush = True
+#If NETCOREAPP Then
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
+#End If
 
         'Dim p As New Performance
         'p.Test()
@@ -18,6 +17,12 @@ Module Program
 
         'Dim generator As New StrConvGenerator
         'Dim pg As String
+
+        'pg = generator.StrConvWideList
+        'IO.File.WriteAllText("C:\temp\umawidelist.txt", pg)
+
+        'pg = generator.StrConvNarrowList
+        'IO.File.WriteAllText("C:\temp\umanarrowlist.txt", pg)
 
         'pg = generator.GenerateQuestionIf
         'IO.File.WriteAllText("C:\temp\pg1.cs", pg)
