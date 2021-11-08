@@ -1,5 +1,5 @@
 # Kana.NET
-Japanese Kana utility for .NET. Convert Hiragana and Katakana.
+Japanese Kana utility for .NET. Convert Hiragana and Katakana, Half width(Hankaku) and Full width(Zenkaku).
 Kana.NET depends on only .NET. Kana.NET doesn't invoke windows funtion.
 So it works on Linux too.
 
